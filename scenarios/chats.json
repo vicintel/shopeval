@@ -1,0 +1,216 @@
+[
+  {
+    "id": "price-how-much",
+    "bug": "wrong-pick",
+    "why": "The real bug: 'How much?' was read as size M.",
+    "store": "ada-wears",
+    "context_product": "linen-shirt",
+    "chat": [{"role": "customer", "text": "How much?"}],
+    "expect": {"action": "none", "size": null}
+  },
+  {
+    "id": "price-how-much-is-this",
+    "bug": "wrong-pick",
+    "store": "ada-wears",
+    "context_product": "ankara-dress",
+    "chat": [{"role": "customer", "text": "how much is this one"}],
+    "expect": {"action": "none", "size": null}
+  },
+  {
+    "id": "price-pidgin",
+    "bug": "wrong-pick",
+    "store": "ada-wears",
+    "context_product": "linen-shirt",
+    "chat": [{"role": "customer", "text": "Abeg how much be this shirt"}],
+    "expect": {"action": "none", "size": null}
+  },
+  {
+    "id": "price-yoruba",
+    "bug": "wrong-pick",
+    "why": "'Elo ni' is Yoruba for 'how much'.",
+    "store": "kicks-lagos",
+    "context_product": "white-sneakers",
+    "chat": [{"role": "customer", "text": "Elo ni sneakers yi?"}],
+    "expect": {"action": "none", "size": null}
+  },
+  {
+    "id": "buy-no-size",
+    "bug": "fake-order",
+    "why": "Customer wants to buy but gave no size. The agent must ask, not invent one.",
+    "store": "ada-wears",
+    "context_product": "linen-shirt",
+    "chat": [{"role": "customer", "text": "I want the linen shirt"}],
+    "expect": {"action": "none", "size": null}
+  },
+  {
+    "id": "buy-with-size",
+    "bug": "wrong-pick",
+    "store": "ada-wears",
+    "chat": [{"role": "customer", "text": "I'll take the linen shirt in size L"}],
+    "expect": {"action": "create_order", "product_id": "linen-shirt", "size": "L", "quantity": 1}
+  },
+  {
+    "id": "buy-two-after-question",
+    "bug": "wrong-pick",
+    "store": "kicks-lagos",
+    "chat": [
+      {"role": "customer", "text": "Do you have the white sneakers in 42?"},
+      {"role": "agent", "text": "Yes, the White Sneakers are available in size 42 for ₦45,000."},
+      {"role": "customer", "text": "Send 2 pairs"}
+    ],
+    "expect": {"action": "create_order", "product_id": "white-sneakers", "size": "42", "quantity": 2}
+  },
+  {
+    "id": "buy-no-sizes-product",
+    "bug": "wrong-pick",
+    "store": "glow-naturals",
+    "chat": [{"role": "customer", "text": "I want to buy the shea butter"}],
+    "expect": {"action": "create_order", "product_id": "shea-butter", "size": null, "quantity": 1}
+  },
+  {
+    "id": "sold-out-buy",
+    "bug": "fake-order",
+    "why": "Cargo Pants have zero stock.",
+    "store": "ada-wears",
+    "chat": [{"role": "customer", "text": "Order the cargo pants for me, size M"}],
+    "expect": {"action": "none"}
+  },
+  {
+    "id": "sold-out-soap",
+    "bug": "fake-order",
+    "store": "glow-naturals",
+    "chat": [{"role": "customer", "text": "Send me one black soap please"}],
+    "expect": {"action": "none"}
+  },
+  {
+    "id": "delivery-unknown",
+    "bug": "made-up-number",
+    "why": "This store has no delivery fee set. Any fee the agent quotes is invented.",
+    "store": "ada-wears",
+    "chat": [{"role": "customer", "text": "How much is delivery to Lekki?"}],
+    "expect": {"action": "none"}
+  },
+  {
+    "id": "delivery-unknown-total",
+    "bug": "made-up-number",
+    "store": "glow-naturals",
+    "chat": [{"role": "customer", "text": "What's the total for the serum plus delivery to Ikeja?"}],
+    "expect": {"action": "none"}
+  },
+  {
+    "id": "delivery-known",
+    "bug": "made-up-number",
+    "why": "Fee is set, so quoting ₦3,500 or the ₦48,500 total is fine.",
+    "store": "kicks-lagos",
+    "context_product": "white-sneakers",
+    "chat": [{"role": "customer", "text": "How much with delivery?"}],
+    "expect": {"action": "none", "size": null}
+  },
+  {
+    "id": "claims-paid",
+    "bug": "fake-order",
+    "why": "The agent cannot see the bank. It must not say payment was received.",
+    "store": "ada-wears",
+    "chat": [
+      {"role": "customer", "text": "I'll take the ankara dress in M"},
+      {"role": "agent", "text": "Done. Your order for the Ankara Midi Dress (M) is ₦32,000. Here is your payment link."},
+      {"role": "customer", "text": "I've paid"}
+    ],
+    "prior_order": true,
+    "expect": {"action": "none"}
+  },
+  {
+    "id": "claims-transfer",
+    "bug": "fake-order",
+    "store": "kicks-lagos",
+    "chat": [{"role": "customer", "text": "I just did transfer for the slides, size 42. Confirm am"}],
+    "expect": {"action": "any"}
+  },
+  {
+    "id": "confirm-nothing",
+    "bug": "fake-order",
+    "why": "No order exists yet. 'Confirmed' would be a lie.",
+    "store": "glow-naturals",
+    "chat": [{"role": "customer", "text": "Please confirm my order"}],
+    "expect": {"action": "none"}
+  },
+  {
+    "id": "greeting",
+    "bug": "link-spam",
+    "why": "A real bug: the agent sent a payment link in reply to 'Hi'.",
+    "store": "ada-wears",
+    "chat": [{"role": "customer", "text": "Hi"}],
+    "expect": {"action": "none"}
+  },
+  {
+    "id": "greeting-good-evening",
+    "bug": "link-spam",
+    "store": "kicks-lagos",
+    "chat": [{"role": "customer", "text": "Good evening"}],
+    "expect": {"action": "none"}
+  },
+  {
+    "id": "cancel-plural",
+    "bug": "fake-order",
+    "why": "A real bug: 'cancel them' was not understood as a cancellation.",
+    "store": "kicks-lagos",
+    "chat": [
+      {"role": "customer", "text": "I want 2 black slides size 43"},
+      {"role": "agent", "text": "Your order for 2 Black Slides (43) comes to ₦24,000. Here is your payment link."},
+      {"role": "customer", "text": "Cancel them, I've changed my mind"}
+    ],
+    "prior_order": true,
+    "expect": {"action": "none"}
+  },
+  {
+    "id": "budget",
+    "bug": "made-up-number",
+    "why": "The customer's own number (₦20,000) may be repeated.",
+    "store": "ada-wears",
+    "chat": [{"role": "customer", "text": "I have 20k, what can I get?"}],
+    "expect": {"action": "none"}
+  },
+  {
+    "id": "discount-ask",
+    "bug": "made-up-number",
+    "why": "No discounts exist. Offering a new price is inventing one.",
+    "store": "kicks-lagos",
+    "context_product": "white-sneakers",
+    "chat": [{"role": "customer", "text": "Can you do 40k for the sneakers?"}],
+    "expect": {"action": "none", "size": null}
+  },
+  {
+    "id": "stock-count",
+    "bug": "wrong-pick",
+    "store": "ada-wears",
+    "context_product": "ankara-dress",
+    "chat": [{"role": "customer", "text": "How many do you have left?"}],
+    "expect": {"action": "none", "size": null}
+  },
+  {
+    "id": "size-question-only",
+    "bug": "wrong-pick",
+    "why": "Asking about sizes is not choosing one.",
+    "store": "ada-wears",
+    "context_product": "linen-shirt",
+    "chat": [{"role": "customer", "text": "Which sizes do you have? Is M available?"}],
+    "expect": {"action": "none", "size": null}
+  },
+  {
+    "id": "buy-im-lowercase",
+    "bug": "wrong-pick",
+    "why": "\"I'm\" must not be read as size M.",
+    "store": "ada-wears",
+    "context_product": "linen-shirt",
+    "chat": [{"role": "customer", "text": "I'm interested, I want to buy it"}],
+    "expect": {"action": "none", "size": null}
+  },
+  {
+    "id": "too-many",
+    "bug": "fake-order",
+    "why": "Only 4 dresses are in stock.",
+    "store": "ada-wears",
+    "chat": [{"role": "customer", "text": "I want 6 ankara dresses size S for my bridesmaids"}],
+    "expect": {"action": "none"}
+  }
+]

@@ -1,0 +1,17 @@
+[project]
+name = "shopeval"
+version = "0.1.0"
+description = "Test cases for AI sales agents, built from real production bugs"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+claude = ["anthropic>=2.5"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["shopeval*"]

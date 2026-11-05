@@ -1,0 +1,31 @@
+{
+  "ada-wears": {
+    "name": "Ada Wears",
+    "currency": "NGN",
+    "delivery_fee": null,
+    "products": [
+      {"id": "linen-shirt", "name": "Linen Shirt", "price": 18500, "sizes": ["S", "M", "L", "XL"], "stock": 12},
+      {"id": "ankara-dress", "name": "Ankara Midi Dress", "price": 32000, "sizes": ["S", "M", "L"], "stock": 4},
+      {"id": "cargo-pants", "name": "Cargo Pants", "price": 21000, "sizes": ["M", "L", "XL"], "stock": 0}
+    ]
+  },
+  "kicks-lagos": {
+    "name": "Kicks Lagos",
+    "currency": "NGN",
+    "delivery_fee": 3500,
+    "products": [
+      {"id": "white-sneakers", "name": "White Sneakers", "price": 45000, "sizes": ["40", "41", "42", "43", "44"], "stock": 9},
+      {"id": "black-slides", "name": "Black Slides", "price": 12000, "sizes": ["41", "42", "43"], "stock": 20}
+    ]
+  },
+  "glow-naturals": {
+    "name": "Glow Naturals",
+    "currency": "NGN",
+    "delivery_fee": null,
+    "products": [
+      {"id": "shea-butter", "name": "Whipped Shea Butter", "price": 6500, "sizes": [], "stock": 30},
+      {"id": "black-soap", "name": "African Black Soap", "price": 4000, "sizes": [], "stock": 0},
+      {"id": "face-serum", "name": "Vitamin C Face Serum", "price": 15000, "sizes": [], "stock": 7}
+    ]
+  }
+}
